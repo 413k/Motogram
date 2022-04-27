@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="d-flex">
+        <div class="d-inline p-2 w-50">
+            <!-- Image -->
+            <img src="{{ vehicle_photo.photo.url }}"
+                 class="w-100 rounded mx-auto d-block" alt="{{ vehicle_photo.description }}">
+        </div>
+        <div class="d-inline p-2 w-50">
+            <!-- Info for First Pet -->
+            {% for vehicle in vehicle_photo.tagged_vehicles.all %}
+                <div class="d-flex justify-content-around">
+                    <h5><u>Vehicle Type:</u> {{ vehicle.vehicle_type }}</h5>
+                    <h5><u>Brand:</u> {{ vehicle.brand }}</h5>
+                    {% if vehicle.year_of_creation %}
+                        <h5><u>Made on:</u> {{ vehicle.year_of_creation }}</h5>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <!-- Description -->
+            {% if vehicle_photo.description %}
+                <p class="mt-2">{{ vehicle_photo.description }}</p>
+            {% endif %}
+            <!-- Likes Button -->
+            {% if not is_owner %}
+                <a href="{% url 'like vehicle photo' vehicle_photo.id %}"><i class="fa fa-heart-o"
+                                                                             aria-hidden="true"></i></a>
+            {% endif %}
+
+            <!-- Likes Counter -->
+            <p class="mt-2">Likes: {{ vehicle_photo.likes }}</p>
+            <!-- Buttons -->
+            {% if is_owner %}
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
