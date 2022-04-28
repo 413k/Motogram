@@ -1,1 +1,1 @@
-web: gunicorn motogram.wsgi
+web: gunicorn motogram.motogram.wsgi
