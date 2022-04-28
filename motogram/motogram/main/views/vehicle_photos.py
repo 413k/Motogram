@@ -31,12 +31,18 @@ class CreateVehiclePhotoView(auth_mixin.LoginRequiredMixin, views.CreateView):
         return super().form_valid(form)
 
 
+class EditVehiclePhotoView(views.UpdateView):
+    model = VehiclePhoto
+    template_name = 'main/photo_edit.html'
+    fields = ('description',)
+
+    # success_url = reverse_lazy('dashboard')
+    def get_success_url(self):
+        return reverse_lazy('vehicle photo details', kwargs={'pk': self.object.id})
+
+
 def like_vehicle_photo(request, pk):
     vehicle_photo = VehiclePhoto.objects.get(pk=pk)
     vehicle_photo.likes += 1
     vehicle_photo.save()
     return redirect('vehicle photo details', pk)
-
-
-def edit_vehicle_photo(request):
-    return render(request, 'main/photo_edit.html')

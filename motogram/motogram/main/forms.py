@@ -1,109 +1,11 @@
-import datetime
 from datetime import date
 
 from django import forms
 from django.core.exceptions import ValidationError
 
-from motogram.main.models import Profile, VehiclePhoto, Vehicle
-from motogram.main.views.helpers import BootstrapFormMixin, DisabledFieldsFormMixin
+from motogram.main.models import Vehicle
+from motogram.common.helpers import BootstrapFormMixin, DisabledFieldsFormMixin
 
-
-class CreateProfileForm(BootstrapFormMixin, forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._init_bootstrap_form_controls()
-
-    class Meta:
-        model = Profile
-        fields = ('first_name', 'last_name', 'picture')
-        widgets = {
-            'first_name': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter first name',
-                }
-            ),
-
-            'last_name': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter last name',
-                }
-            ),
-
-            'picture': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter URL',
-                }
-            ),
-
-        }
-
-
-class EditProfileForm(BootstrapFormMixin, forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._init_bootstrap_form_controls()
-        self.initial['gender'] = Profile.DO_NOT_SHOW
-
-    class Meta:
-        model = Profile
-        fields = '__all__'
-        widgets = {
-            'first_name': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter first name',
-                }
-            ),
-
-            'last_name': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter last name',
-                }
-            ),
-
-            'picture': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter URL',
-                }
-            ),
-
-            'email': forms.EmailInput(
-                attrs={
-                    'placeholder': 'Enter email',
-                }
-            ),
-
-            'gender': forms.Select(
-                choices=Profile.GENDERS,
-
-            ),
-
-            'description': forms.Textarea(
-                attrs={
-                    'placeholder': 'Enter description',
-                    'rows': 3,
-                }
-            ),
-
-            'date_of_birth': forms.DateInput(
-                attrs={
-                    'min': '1900-01-01',
-                }
-            )
-
-        }
-
-
-class DeleteProfileForm(forms.ModelForm):
-    def save(self, commit=True):
-        vehicles = list(self.instance.vehicle_set.all())
-        VehiclePhoto.objects.filter(tagged_vehicles__in=vehicles).delete()
-        self.instance.delete()
-
-        return self.instance
-
-    class Meta:
-        model = Profile
-        fields = ()
 
 
 class CreateVehicleForm(BootstrapFormMixin, forms.ModelForm):

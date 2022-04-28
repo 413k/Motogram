@@ -3,7 +3,7 @@
 import django.core.validators
 from django.db import migrations, models
 import django.db.models.deletion
-import motogram.main.validators
+import motogram.common.validators
 
 
 class Migration(migrations.Migration):
@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             name='Profile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=30, validators=[django.core.validators.MinLengthValidator(2), motogram.main.validators.validate_only_letters])),
-                ('last_name', models.CharField(max_length=30, validators=[django.core.validators.MinLengthValidator(2), motogram.main.validators.validate_only_letters])),
+                ('first_name', models.CharField(max_length=30, validators=[django.core.validators.MinLengthValidator(2), motogram.common.validators.validate_only_letters])),
+                ('last_name', models.CharField(max_length=30, validators=[django.core.validators.MinLengthValidator(2), motogram.common.validators.validate_only_letters])),
                 ('picture', models.URLField()),
                 ('date_of_birth', models.DateField(blank=True, null=True)),
                 ('description', models.TextField(blank=True, null=True)),
@@ -41,7 +41,8 @@ class Migration(migrations.Migration):
             name='VehiclePhoto',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('photo', models.ImageField(upload_to='', validators=[motogram.main.validators.validate_file_max_size_in_mb])),
+                ('photo', models.ImageField(upload_to='', validators=[
+                    motogram.common.validators.validate_file_max_size_in_mb])),
                 ('description', models.TextField(blank=True, null=True)),
                 ('publication_date', models.DateTimeField(auto_now_add=True)),
                 ('likes', models.IntegerField(default=0)),
