@@ -24,7 +24,11 @@ SECRET_KEY = 'django-insecure-0ok$54o#&!i1vool2=ss8mk#9i)=n#s!gf^l8a@!xcwmjz3%%w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'motogram-exam.herokuapp.com',
+]
 
 # Application definition
 DJANGO_APPS = (
