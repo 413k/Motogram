@@ -1,1 +1,1 @@
-web: gunicorn motogram.motogram.wsgi
+web: gunicorn --pythonpath motogram motogram.wsgi
