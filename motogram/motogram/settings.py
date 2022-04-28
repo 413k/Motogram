@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'motogram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'motogram_db',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
+        'NAME': 'd85lshc2q3uup2',
+        'USER': 'hqcbuacfxmrujb',
+        'PASSWORD': 'a7fb33fc0a9e628bbf0627a379b97b7252fd655e8f16b57155037e54af307ece',
+        'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
