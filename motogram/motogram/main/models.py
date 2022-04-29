@@ -50,7 +50,7 @@ class Vehicle(models.Model):
 
 
 class VehiclePhoto(models.Model):
-    photo = cloudinary_models.CloudinaryField('image'),
+    photo = cloudinary_models.CloudinaryField('image')
 
     description = models.TextField(
         null=True,
