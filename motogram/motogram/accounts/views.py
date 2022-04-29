@@ -34,12 +34,12 @@ class ChangeUserPasswordView(auth_views.PasswordChangeView):
 
 class ProfileDetailsView(views.DetailView):
     model = Profile
-    template_name = 'main/../../templates/accounts/profile_details.html'
+    template_name = 'accounts/profile_details.html'
     context_object_name = 'profile'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # self.object is a Profile instance
+        # self.objects is a Profile instance
         vehicles = list(Vehicle.objects.filter(user_id=self.object.user_id))
 
         vehicle_photos = VehiclePhoto.objects \

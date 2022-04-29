@@ -25,7 +25,7 @@ class MotogramUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     USERNAME_FIELD = 'username'
 
-    object = MotogramUserManager()
+    objects = MotogramUserManager()
 
 
 class Profile(models.Model):

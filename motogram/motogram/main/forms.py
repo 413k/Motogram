@@ -7,7 +7,6 @@ from motogram.main.models import Vehicle
 from motogram.common.helpers import BootstrapFormMixin, DisabledFieldsFormMixin
 
 
-
 class CreateVehicleForm(BootstrapFormMixin, forms.ModelForm):
     MIN_YEAR_OF_CREATION = date(1900, 1, 1)
     MAX_YEAR_OF_CREATION = date.today()

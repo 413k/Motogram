@@ -41,8 +41,7 @@ class Migration(migrations.Migration):
             name='VehiclePhoto',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('photo', models.ImageField(upload_to='', validators=[
-                    motogram.common.validators.validate_file_max_size_in_mb])),
+                ('photo', models.ImageField(upload_to='', validators=[])),
                 ('description', models.TextField(blank=True, null=True)),
                 ('publication_date', models.DateTimeField(auto_now_add=True)),
                 ('likes', models.IntegerField(default=0)),

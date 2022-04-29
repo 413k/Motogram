@@ -2,7 +2,7 @@ from cloudinary import models as cloudinary_models
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from motogram.common.validators import validate_file_max_size_in_mb
+from motogram.common.validators import MaxFileSizeInMbValidator
 
 UserModel = get_user_model()
 
@@ -50,6 +50,7 @@ class Vehicle(models.Model):
 
 
 class VehiclePhoto(models.Model):
+
     photo = cloudinary_models.CloudinaryField('image')
 
     description = models.TextField(

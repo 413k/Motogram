@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import cloudinary
 
-from motogram.utils import is_production
+from motogram.utils import is_production, is_test
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'purple-unicorn-1230988')
+SECRET_KEY = os.getenv('SECRET_KEY', ' ')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
@@ -65,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'motogram.common.middlewares.count_user_clicks_middleware',
+    'motogram.common.middlewares.last_viewed_vehicle_photos_middleware',
 ]
 
 ROOT_URLCONF = 'motogram.urls'
@@ -163,6 +165,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGGING_LEVEL = 'DEBUG'
 
 if is_production():
+    LOGGING_LEVEL = 'INFO'
+elif is_test():
     LOGGING_LEVEL = 'INFO'
 
 LOGGING = {
