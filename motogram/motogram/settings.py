@@ -168,7 +168,7 @@ LOGGING_LEVEL = 'DEBUG'
 if is_production():
     LOGGING_LEVEL = 'INFO'
 elif is_test():
-    LOGGING_LEVEL = 'INFO'
+    LOGGING_LEVEL = 'CRITICAL'
 
 LOGGING = {
     'version': 1,
