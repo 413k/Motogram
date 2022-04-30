@@ -56,7 +56,7 @@ MOTOGRAM_APPS = (
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MOTOGRAM_APPS
 
-MIDDLEWARE = {
+MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,7 +67,7 @@ MIDDLEWARE = {
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'motogram.common.middlewares.count_user_clicks_middleware',
     'motogram.common.middlewares.last_viewed_vehicle_photos_middleware',
-}
+]
 
 ROOT_URLCONF = 'motogram.urls'
 
@@ -107,6 +107,7 @@ DEFAULT_DATABASE_CONFIG = {
 DATABASES = {
     'default': DEFAULT_DATABASE_CONFIG,
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
