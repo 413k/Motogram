@@ -65,8 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'motogram.common.middlewares.count_user_clicks_middleware',
-    # 'motogram.common.middlewares.last_viewed_vehicle_photos_middleware',
+    'motogram.common.middlewares.count_user_clicks_middleware',
+    'motogram.common.middlewares.last_viewed_vehicle_photos_middleware',
 ]
 
 ROOT_URLCONF = 'motogram.urls'
