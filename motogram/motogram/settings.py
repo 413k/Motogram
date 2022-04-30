@@ -166,7 +166,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGGING_LEVEL = 'DEBUG'
 
 if is_production():
-    LOGGING_LEVEL = 'INFO'
+    LOGGING_LEVEL = 'DEBUG'
 elif is_test():
     LOGGING_LEVEL = 'INFO'
 
